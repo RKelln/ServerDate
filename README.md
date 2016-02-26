@@ -40,7 +40,10 @@ Include the following `<SCRIPT>` element in your web page:
     amortizationThreshold: 2000, // ms
     // After the initial synchronization the two clocks may drift so we
     // automatically synchronize again every synchronizationIntervalDelay.
-    synchronizationIntervalDelay: 60 * 60 * 1000 // ms
+    synchronizationIntervalDelay: 60 * 60 * 1000, // ms
+    // Each syncronization requests multiple samples from the server and uses the
+    // one with least latency for determining the offset.
+    synchronizationRequestSamples: 10
   };
 </SCRIPT>
 <SCRIPT src="ServerDate.js"></SCRIPT>
