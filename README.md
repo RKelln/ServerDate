@@ -43,7 +43,9 @@ Include the following `<SCRIPT>` element in your web page:
     synchronizationIntervalDelay: 60 * 60 * 1000, // ms
     // Each syncronization requests multiple samples from the server and uses the
     // one with least latency for determining the offset.
-    synchronizationRequestSamples: 10
+    synchronizationRequestSamples: 10,
+    // Each syncronization squence has a timeout after which it will fail.
+    syncronizationTimeout: 10 * 1000 // ms
   };
 </SCRIPT>
 <SCRIPT src="ServerDate.js"></SCRIPT>
