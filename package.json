@@ -4,14 +4,7 @@
   "description": "Make the server's clock available to the browser.",
   "main": "lib/ServerDate.js",
   "scripts": {
-    "test:network": "docker network create ServerDate",
-    "test:client": "docker run --name=serverdate_client --net=ServerDate --detach selenium/standalone-chrome-debug:latest",
-    "test:server": "docker run --name=serverdate_server --net=ServerDate --volume=$PWD:/usr/src/app --workdir=/usr/src/app --rm node:4 npm run test:stage2",
-    "pretest": "npm run test:network; npm run test:client",
-    "test": "npm run test:server",
-    "test:stage2": "mocha",
-    "posttest": "npm run test:clean",
-    "test:clean": "docker rm --force serverdate_client; docker network rm ServerDate"
+    "test": "node test/main"
   },
   "repository": {
     "type": "git",
@@ -25,11 +18,6 @@
     "Date"
   ],
   "author": "David Braun",
-  "license": "LGPL-3.0",
-  "readmeFilename": "README.md",
-  "devDependencies": {
-    "express": "^4.13.4",
-    "mocha": "^2.4.5",
-    "webdriverio": "^4.0.3"
-  }
+  "license": "LGPL",
+  "readmeFilename": "README.md"
 }
