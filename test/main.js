@@ -17,10 +17,12 @@ app.get("/ServerDate.js", function(req, res) {
 		else {
 			if (req.query.time) {
 				res.set("Content-Type", "application/json");
+				res.set("X-Date-MillisecondTimestamp", now);
 				res.json(now);
 			}
 			else {
 				res.set("Content-Type", "text/javascript");
+				res.set("X-Date-MillisecondTimestamp", now);
 				res.send(data + "(" + now + ");\n");
 			}
 		}

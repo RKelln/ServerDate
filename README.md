@@ -97,6 +97,22 @@ undefined
 then re-synchronizes itself from time to time to keep the two clocks from
 drifting apart.
 
+
+## Additional Options
+
+For increased accuracy you can add an additional header to return a UNIX timestamp
+in milliseconds, which is preferred over the usual Date header (which is only
+accurate to the second).
+
+Using express this looks something like:
+
+```javascript
+app.get("/ServerDate.js", function(req, res) {
+    res.set("X-Date-MillisecondTimestamp", Date.now());
+}
+```
+
+
 # References
 
 * "Probabilistic clock synchronization" by Flaviu Cristian
