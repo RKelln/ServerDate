@@ -137,11 +137,11 @@ describe("ServerDate", function () {
 
     describe("defaults can be overridden", function () {
       var testConfig = {
-        amortizationRate: 1,
-        amortizationThreshold: 2,
-        synchronizationIntervalDelay: 3,
-        synchronizationRequestSamples: 4,
-        syncronizationTimeout: 5
+        amortizationRate: ServerDate.amortizationRate + 1,
+        amortizationThreshold: ServerDate.amortizationThreshold + 1,
+        synchronizationIntervalDelay: ServerDate.synchronizationIntervalDelay + 1,
+        synchronizationRequestSamples: ServerDate.synchronizationRequestSamples + 1,
+        syncronizationTimeout: ServerDate.syncronizationTimeout + 1
       };
 
       beforeEach(function() {
