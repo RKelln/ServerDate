@@ -58,15 +58,19 @@ describe("ServerDate", function () {
 
   describe("additional methods not found in Date", function () {
     it("sync() manually triggers a synchronization which fires a callback when completed", function (done) {
-      ServerDate.sync(function(success, newTarget, oldTarget) {
-        expect(typeof success).toBe('boolean');
-        expect(typeof newTarget).toBe('object');
-        expect(typeof newTarget.precision).toBe('number');
-        expect(typeof newTarget.value).toBe('number');
-        expect(typeof oldTarget).toBe('object');
-        expect(typeof oldTarget.precision).toBe('number');
-        expect(typeof oldTarget.value).toBe('number');
-        done();
+      ServerDate.sync({
+        callback: function(success, newTarget, oldTarget) {
+          expect(typeof success).toBe('boolean');
+          expect(typeof newTarget).toBe('object');
+          expect(typeof newTarget.precision).toBe('number');
+          expect(typeof newTarget.value).toBe('number');
+          expect(typeof oldTarget).toBe('object');
+          expect(typeof oldTarget.precision).toBe('number');
+          expect(typeof oldTarget.value).toBe('number');
+          done();
+        },
+        sampleCount: 1,
+        force: true
       });
     });
 
