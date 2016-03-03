@@ -45,7 +45,13 @@ Include the following `<SCRIPT>` element in your web page:
     // one with least latency for determining the offset.
     synchronizationRequestSamples: 10,
     // Each syncronization squence has a timeout after which it will fail.
-    syncronizationTimeout: 10 * 1000 // ms
+    syncronizationTimeout: 10 * 1000 // ms,
+    // When the page tab becomes active from being inactive it will resync.
+    // These samples will be used to update the current sync, but only if
+    // they are better than the existing best.
+    // To override the number of samples when doing this sync, set the below
+    // to a value. Set to 0 or false to disable syncing on page visible events.
+    syncronizationSamplesOnPageShow: 1
   };
 </SCRIPT>
 <SCRIPT src="ServerDate.js"></SCRIPT>

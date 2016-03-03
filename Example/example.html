@@ -16,7 +16,7 @@ GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with ServerDate.  If not, see <http://www.gnu.org/licenses/>.
-    
+
 -->
 
 <HTML>
@@ -52,7 +52,18 @@ along with ServerDate.  If not, see <http://www.gnu.org/licenses/>.
             amortizationThreshold: 2000, // ms
             // After the initial synchronization the two clocks may drift so we
             // automatically synchronize again every synchronizationIntervalDelay.
-            synchronizationIntervalDelay: 60 * 60 * 1000 // ms
+            synchronizationIntervalDelay: 60 * 60 * 1000, // ms
+            // Each syncronization requests multiple samples from the server and uses the
+            // one with least latency for determining the offset.
+            synchronizationRequestSamples: 10,
+            // Each syncronization squence has a timeout after which it will fail.
+            syncronizationTimeout: 10 * 1000, // ms
+            // When the page tab becomes active from being inactive it will resync.
+            // These samples will be used to update the current sync, but only if
+            // they are better than the existing best.
+            // To override the number of samples when doing this sync, set the below
+            // to a value. Set to 0 or false to disable syncing on page visible events.
+            syncronizationSamplesOnPageShow: 1
         }
 	</SCRIPT>
         <SCRIPT src="../lib/ServerDate.js"></SCRIPT>
