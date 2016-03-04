@@ -38,6 +38,9 @@ Include the following `<SCRIPT>` element in your web page:
     // we skip amortization and set the clock to match the server's clock
     // immediately.
     amortizationThreshold: 2000, // ms
+    // The URL called during syncronization. Defaults to the ServerDate script URL
+    // if left as null.
+    synchronizationURL: null,
     // After the initial synchronization the two clocks may drift so we
     // automatically synchronize again every synchronizationIntervalDelay.
     synchronizationIntervalDelay: 60 * 60 * 1000, // ms
