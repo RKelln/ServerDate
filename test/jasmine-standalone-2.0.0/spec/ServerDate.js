@@ -111,69 +111,37 @@ describe("ServerDate", function () {
   });
 
   describe("additional properties not found in Date", function () {
+    var testConfig = {
+      amortizationRate: ServerDate.amortizationRate + 1,
+      amortizationThreshold: ServerDate.amortizationThreshold + 1,
+      synchronizationURL: "http://test",
+      synchronizationIntervalDelay: ServerDate.synchronizationIntervalDelay + 1,
+      synchronizationRequestSamples: ServerDate.synchronizationRequestSamples + 1,
+      syncronizationTimeout: ServerDate.syncronizationTimeout + 1,
+      syncronizationSamplesOnPageShow: ServerDate.syncronizationSamplesOnPageShow + 1
+    };
 
     describe("defaults are set", function () {
-      it("amortizationRate default is set", function () {
-        expect(ServerDate.config.amortizationRate).toBeDefined();
-        expect(ServerDate.amortizationRate).toBe(ServerDate.config.amortizationRate);
-      });
-
-      it("amortizationThreshold default is set", function () {
-        expect(ServerDate.config.amortizationThreshold).toBeDefined();
-        expect(ServerDate.amortizationThreshold).toBe(ServerDate.config.amortizationThreshold);
-      });
-
-      it("synchronizationIntervalDelay default is set", function () {
-        expect(ServerDate.config.synchronizationIntervalDelay).toBeDefined();
-        expect(ServerDate.synchronizationIntervalDelay).toBe(ServerDate.config.synchronizationIntervalDelay);
-      });
-
-      it("synchronizationRequestSamples default is set", function () {
-        expect(ServerDate.config.synchronizationRequestSamples).toBeDefined();
-        expect(ServerDate.synchronizationRequestSamples).toBe(ServerDate.config.synchronizationRequestSamples);
-      });
-
-      it("syncronizationTimeout default is set", function () {
-        expect(ServerDate.config.syncronizationTimeout).toBeDefined();
-        expect(ServerDate.syncronizationTimeout).toBe(ServerDate.config.syncronizationTimeout);
+      // NOTE: ServerDate.init not called, so defaults are used
+      Object.keys(testConfig).forEach( function(config) {
+        it(config + " default is set", function () {
+          expect(ServerDate.config[config]).toBeDefined();
+          expect(ServerDate[config]).toBe(ServerDate.config[config]);
+        });
       });
     });
 
     describe("defaults can be overridden", function () {
-      var testConfig = {
-        amortizationRate: ServerDate.amortizationRate + 1,
-        amortizationThreshold: ServerDate.amortizationThreshold + 1,
-        synchronizationIntervalDelay: ServerDate.synchronizationIntervalDelay + 1,
-        synchronizationRequestSamples: ServerDate.synchronizationRequestSamples + 1,
-        syncronizationTimeout: ServerDate.syncronizationTimeout + 1
-      };
-
       beforeEach(function() {
         ServerDate.init(testConfig)
       });
 
-
-      it("amortizationRate default is overridden", function () {
-        expect(ServerDate.amortizationRate).toBe(testConfig.amortizationRate);
-      });
-
-      it("amortizationThreshold default is overridden", function () {
-        expect(ServerDate.amortizationThreshold).toBe(testConfig.amortizationThreshold);
-      });
-
-      it("synchronizationIntervalDelay default is overridden", function () {
-        expect(ServerDate.synchronizationIntervalDelay).toBe(testConfig.synchronizationIntervalDelay);
-      });
-
-      it("synchronizationRequestSamples default is overridden", function () {
-        expect(ServerDate.synchronizationRequestSamples).toBe(testConfig.synchronizationRequestSamples);
-      });
-
-      it("syncronizationTimeout default is overridden", function () {
-        expect(ServerDate.syncronizationTimeout).toBe(testConfig.syncronizationTimeout);
+      Object.keys(testConfig).forEach( function(config) {
+        it(config + " default is overridden", function () {
+          expect(ServerDate[config]).toBe(testConfig[config]);
+        });
       });
     });
   });
-
 
 });
